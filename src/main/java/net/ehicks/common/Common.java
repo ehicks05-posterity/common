@@ -7,9 +7,17 @@ import java.util.*;
 
 public class Common
 {
-    //
-    //
-    //
+    public static void sleep(long ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
 
     public static String toMetric(long in)
     {
