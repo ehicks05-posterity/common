@@ -5,6 +5,8 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
+//group = 'com.github.ehicks05'
+
 repositories {
     mavenCentral()
 }
@@ -27,13 +29,13 @@ idea{
     }
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "$artifactory_contextUrl/libs-snapshot-local/"){
-                authentication(userName: "$artifactory_user", password: "$artifactory_password")
-            }
-            pom.version = '1.0-SNAPSHOT'
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: "$artifactory_contextUrl/libs-snapshot-local/"){
+//                authentication(userName: "$artifactory_user", password: "$artifactory_password")
+//            }
+//            pom.version = '1.0-SNAPSHOT'
+//        }
+//    }
+//}
