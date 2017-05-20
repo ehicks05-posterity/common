@@ -19,6 +19,7 @@ public class CommonTest
         inputToExpectedResult.put(1234567L, "1 MB");
         inputToExpectedResult.put(12345678L, "12 MB");
         inputToExpectedResult.put(123456789L, "118 MB");
+        inputToExpectedResult.put(1234567890L, "1 GB");
 
         for (Long input : inputToExpectedResult.keySet())
         {

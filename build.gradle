@@ -30,7 +30,7 @@ idea{
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "***REMOVED***/libs-snapshot-local/"){
+            repository(url: "$artifactory_contextUrl/libs-snapshot-local/"){
                 authentication(userName: "$artifactory_user", password: "$artifactory_password")
             }
             pom.version = '1.0-SNAPSHOT'
