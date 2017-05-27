@@ -3,14 +3,53 @@ package net.ehicks.common;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Common
 {
     private static final Logger log = LoggerFactory.getLogger(Common.class);
+
+    public static String getContents(File file)
+    {
+        List<String> lines = new ArrayList<>();
+        try
+        {
+            lines = Files.readAllLines(file.toPath());
+        }
+        catch (IOException e)
+        {
+            log.error(e.getMessage(), e);
+        }
+
+        String fileContents = "";
+        for (String line : lines)
+            fileContents += line + "\r\n";
+        return fileContents;
+    }
+
+    public static String createTemporaryFile(String extension)
+    {
+        String now = LocalDate.now().toString();
+        File tempFile = new File(System.getProperty("java.io.tmpdir") + File.separator + now + "." + extension);
+
+        try
+        {
+            return tempFile.getCanonicalPath();
+        }
+        catch (IOException e)
+        {
+            log.error(e.getMessage(), e);
+        }
+
+        return null;
+    }
 
     public static void sleep(long ms)
     {
