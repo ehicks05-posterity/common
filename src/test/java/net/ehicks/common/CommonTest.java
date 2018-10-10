@@ -1,7 +1,7 @@
 package net.ehicks.common;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +26,7 @@ public class CommonTest
             String result = Common.toMetric(input);
             String expected = inputToExpectedResult.get(input);
 
-            Assert.assertTrue("Common.toMetric(" + input + ") returns " + result + " instead of " + expected, result.equals(expected));
+            Assertions.assertEquals(result, expected, "Common.toMetric(" + input + ") returns " + result + " instead of " + expected);
         }
-
     }
 }
