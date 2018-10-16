@@ -15,6 +15,8 @@ import java.util.*;
 public class Common
 {
     private static final Logger log = LoggerFactory.getLogger(Common.class);
+    private static final List<String> METRIC_PREFIXES = Arrays.asList("", "k", "M", "G", "T");
+    private static final List<String> BINARY_PREFIXES = Arrays.asList("", "Ki", "Mi", "Gi", "Ti");
 
     public static String getContents(File file)
     {
@@ -65,15 +67,22 @@ public class Common
 
     public static String toMetric(long in)
     {
+        return toMetric(in, "B");
+    }
+
+    public static String toMetric(long in, String unit)
+    {
+        int breakpoint = unit.equals("B") ? 1024 : 1000;
+        List<String> prefixes = unit.equals("B") ? BINARY_PREFIXES : METRIC_PREFIXES;
+
         double value = in;
-        List<String> prefixes = Arrays.asList("", "k", "M", "G");
-        int unit = 0;
-        while (value > 1024)
+        int prefixIndex = 0;
+        while (value > breakpoint)
         {
-            value /= 1024;
-            unit++;
+            value /= breakpoint;
+            prefixIndex++;
         }
-        return String.format("%.0f", value) + " " + prefixes.get(unit) + "B";
+        return String.format("%.0f", value) + " " + prefixes.get(prefixIndex) + unit;
     }
 
     public static String limit(String input, int limit)
