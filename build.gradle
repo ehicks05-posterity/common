@@ -29,7 +29,7 @@ dependencies {
 
 idea{
     project {
-        languageLevel = '1.8'
+        languageLevel = '11'
     }
     module {
         downloadJavadoc = true // defaults to false
