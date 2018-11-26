@@ -34,12 +34,17 @@ public class SFTP
 
             if (directory != null && directory.length() > 0) sftp.cd(directory);
 
-            Vector<ChannelSftp.LsEntry> files = sftp.ls("*");
+            Vector files = sftp.ls("*");
             log.info("Found {} files in dir {}", files.size(), directory);
 
             ChannelSftp.LsEntry remoteFile = null;
-            for (ChannelSftp.LsEntry file : files)
+            for (Object possibleFile : files)
             {
+                if (!(possibleFile instanceof ChannelSftp.LsEntry))
+                    continue;
+
+                ChannelSftp.LsEntry file = (ChannelSftp.LsEntry) possibleFile;
+
                 if (file.getAttrs().isDir())
                     continue;
 
